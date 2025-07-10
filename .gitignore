@@ -1,0 +1,19 @@
+# Visual Studio / .NET build
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ASP.NET Temp files
+*.publish.xml
+publish/
+
+# React / Node
+/frontend/library-ui/node_modules/
+/frontend/library-ui/build/
+
+# VS Code
+.vscode/
