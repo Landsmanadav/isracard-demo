@@ -6,17 +6,23 @@ using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. רישום המוקטדטאבייס והשירותים
 builder.Services.AddSingleton<MockDatabase>();
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IMemberService, MemberService>();
-
-// 2. הוספת MVC Controllers
 builder.Services.AddControllers();
-
-// 3. Swagger (אופציונלי)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", policy =>
+    {
+        policy
+            .AllowAnyOrigin()    // או WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -28,12 +34,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// (אם צריך CORS למפתחים)
-// app.UseCors("AllowReactApp");
+app.UseCors("AllowReactApp");
 
 app.UseAuthorization();
 
-// 4. מיפוי כל Controllers
 app.MapControllers();
 
 app.Run();

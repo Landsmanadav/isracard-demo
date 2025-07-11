@@ -1,7 +1,19 @@
-$primary-color: #ffffff;
-$background-color: #222222;
-$text-color: #aaa;
+$primary-color: #f7f7fa;
+$background-color: #23262f;
+$text-color: #d3d7df;
+
 $header-padding: 18px 0;
 $link-gap: 28px;
-$font-main: "Space Grotesk", "Segoe UI", Arial, sans-serif; // שים גם את הפונט שלך פה!
+
+$font-main: "Space Grotesk", "Segoe UI", Arial, sans-serif;
 $font-size-base: 16px;
+
+// Buttons
+$btn-bg: #35373e;
+$btn-bg-hover: #464852;
+
+$btn-delete-bg: #63666e;
+$btn-delete-hover: #393a42;
+
+$btn-unassign-bg: #434449;
+$btn-unassign-hover: #25262a;

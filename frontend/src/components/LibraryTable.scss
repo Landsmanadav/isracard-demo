@@ -1,0 +1,61 @@
+@use "../styles/_variables" as *;
+.library-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #282828;
+  color: #fff;
+  font-family: "Space Grotesk", Arial, sans-serif;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 32px 0 #1113;
+  th,
+  td {
+    padding: 16px 12px;
+    text-align: left;
+  }
+  th {
+    background: #212121;
+    color: #ccc;
+    font-size: 1.1em;
+    letter-spacing: 0.03em;
+    font-weight: 500;
+    border-bottom: 1.5px solid #393939;
+  }
+  tr {
+    transition: background 0.12s;
+    &:hover {
+      background: #23236b21;
+    }
+  }
+  td {
+    border-bottom: 1px solid #393939;
+  }
+
+  .btn {
+    padding: 6px 18px;
+    background: $btn-bg;
+    color: $primary-color;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    width: 100px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: $font-main;
+    &:hover {
+      background: $btn-bg-hover;
+    }
+  }
+  .delete-btn {
+    background: $btn-delete-bg;
+    &:hover {
+      background: $btn-delete-hover;
+    }
+  }
+  .unassign-btn {
+    background: $btn-unassign-bg;
+    &:hover {
+      background: $btn-unassign-hover;
+    }
+  }
+}
