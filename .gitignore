@@ -1,3 +1,29 @@
+<<<<<<< HEAD
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+=======
 # Visual Studio / .NET build
 bin/
 obj/
@@ -17,3 +43,4 @@ publish/
 
 # VS Code
 .vscode/
+>>>>>>> 5e3d858031e451c80b25edf9f4c997f480c42272
