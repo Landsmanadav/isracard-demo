@@ -13,6 +13,7 @@ namespace LibraryApi.Services
         BookWithAssignedMemberRes GetByIdWithAssignedMember(int id);
         Book Add(Book book);
         public bool Delete(int id);
-        public Book Update(int id, UpdateBookReq updateBookReq);
+        public BookWithAssignedMemberRes UpdateBook(int id, UpdateBookReq req);
+        public BookWithAssignedMemberRes? UnassignBook(int bookId);
     }
 }

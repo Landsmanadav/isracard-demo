@@ -32,7 +32,14 @@ export async function deleteBook(id) {
   if (!res.ok) throw new Error("Failed to delete book");
   return id;
 }
-
+export async function unassignBook(id) {
+  const res = await fetch(`/api/books/${id}/unassign`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+  });
+  if (!res.ok) throw new Error("Failed to unassign book");
+  return await res.json();
+}
 // חברים
 export async function fetchMembers() {
   const res = await fetch("/api/members");

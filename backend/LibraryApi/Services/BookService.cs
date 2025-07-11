@@ -89,22 +89,69 @@ public class BookService : IBookService
         _logger.LogInformation("Book deleted. Id: {Id}", id);
         return true;
     }
-
-    public Book Update(int id, UpdateBookReq updateBookReq)
+    public BookWithAssignedMemberRes? UpdateBook(int id, UpdateBookReq req)
     {
         var book = _db.Books.FirstOrDefault(b => b.Id == id);
         if (book == null)
-            return null;
-
-        book.Title = updateBookReq.Title;
-        book.UpdatedAt = DateTime.UtcNow;
-
-        if (updateBookReq.UnassignMember && book.MemberId.HasValue)
         {
-            book.MemberId = null;
+            _logger.LogWarning("UpdateBook: Book not found. Id: {Id}", id);
+            return null;
         }
 
-        _logger.LogInformation("Book updated. Id: {Id}, Title: {Title}", book.Id, book.Title);
-        return book;
+        _logger.LogInformation("UpdateBook: Data received - Id: {Id}, New Title: {Title}, New MemberId: {MemberId}", id, req.Title, req.MemberId);
+
+        book.Title = req.Title ?? book.Title;
+        book.MemberId = req.MemberId;
+        book.UpdatedAt = DateTime.Now;
+
+        AssignedMember? assignedMember = null;
+        if (book.MemberId.HasValue)
+        {
+            var member = _db.Members.FirstOrDefault(m => m.Id == book.MemberId.Value);
+            if (member != null)
+            {
+                assignedMember = new AssignedMember
+                {
+                    Id = member.Id,
+                    FullName = $"{member.FirstName} {member.LastName}"
+                };
+            }
+            else
+            {
+                _logger.LogWarning("UpdateBook: Member not found for MemberId: {MemberId}", book.MemberId);
+            }
+        }
+
+        _logger.LogInformation("UpdateBook: Book updated. Id: {Id}, Title: {Title}, MemberId: {MemberId}", book.Id, book.Title, book.MemberId);
+
+        return new BookWithAssignedMemberRes
+        {
+            Id = book.Id,
+            Title = book.Title,
+            CreatedAt = book.CreatedAt,
+            UpdatedAt = book.UpdatedAt,
+            AssignedMember = assignedMember
+        };
     }
+
+
+
+    public BookWithAssignedMemberRes? UnassignBook(int bookId)
+    {
+        var book = _db.Books.FirstOrDefault(b => b.Id == bookId);
+        if (book == null)
+            return null;
+
+        book.MemberId = null;
+        book.UpdatedAt = DateTime.Now;
+        return new BookWithAssignedMemberRes
+        {
+            Id = book.Id,
+            Title = book.Title,
+            CreatedAt = book.CreatedAt,
+            UpdatedAt = book.UpdatedAt,
+            AssignedMember = null // כי ניתקת!
+        };
+    }
+
 }

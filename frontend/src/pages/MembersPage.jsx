@@ -1,13 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import LibraryTable from "../components/LibraryTable";
 import { useLibraryStore } from "../context/LibraryContext";
 import { Box } from "@mui/material";
-import "./MembersPage.scss";
 import RowActions from "../components/RowActions";
+import EditMemberModal from "../components/EditMemberModal";
+import "./MembersPage.scss";
 
 export default function MembersPage() {
-  const { members, loading, error, fetchMembers, deleteMember } =
-    useLibraryStore();
+  const {
+    members,
+    books,
+    loading,
+    error,
+    fetchMembers,
+    fetchBooks,
+    deleteMember,
+    unassignBook,
+    updateMember,
+  } = useLibraryStore();
+
+  const [editingMember, setEditingMember] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     fetchMembers();
@@ -37,22 +50,42 @@ export default function MembersPage() {
     },
   ];
 
-  const customButtons = (row) => {
-    return (
-      <RowActions
-        onEdit={() => console.log("Edit", row)}
-        onDelete={() => handleDeleteMember(row.id)}
-        onUnassign={() => console.log("Unassign", row)}
-        assigned={!!row.assignedBook}
-        loading={loading}
-      />
-    );
-  };
+  async function handleEditMember(row) {
+    await fetchBooks();
+    setEditingMember(row);
+    setModalOpen(true);
+  }
+
+  async function handleSaveMember(data) {
+    await updateMember(editingMember.id, data);
+    setModalOpen(false);
+    setEditingMember(null);
+    fetchMembers();
+  }
+
   function handleDeleteMember(id) {
     if (window.confirm("בטוח למחוק את החבר?")) {
       deleteMember(id);
     }
   }
+
+  async function handleUnassignBook(bookId) {
+    if (window.confirm("האם אתה בטוח שברצונך לבטל את השיוך של הספר?")) {
+      await unassignBook(bookId);
+      fetchMembers();
+      fetchBooks();
+    }
+  }
+
+  const customButtons = (row) => (
+    <RowActions
+      onEdit={() => handleEditMember(row)}
+      onDelete={() => handleDeleteMember(row.id)}
+      onUnassign={() => handleUnassignBook(row.assignedBook?.id)}
+      assigned={!!row.assignedBook}
+      loading={loading}
+    />
+  );
 
   return (
     <Box className="members-container">
@@ -61,10 +94,20 @@ export default function MembersPage() {
         <LibraryTable
           rows={members}
           columns={columns}
-          onEdit={(row) => console.log("Edit", row)}
+          onEdit={handleEditMember}
           customButtons={customButtons}
         />
       </div>
+      {editingMember && (
+        <EditMemberModal
+          open={modalOpen}
+          member={editingMember}
+          books={books}
+          onSave={handleSaveMember}
+          onClose={() => setModalOpen(false)}
+          loading={loading}
+        />
+      )}
     </Box>
   );
 }

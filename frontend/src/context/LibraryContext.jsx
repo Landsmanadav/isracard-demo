@@ -120,6 +120,16 @@ export function LibraryProvider({ children }) {
     }
   }, []);
 
+  const unassignBook = useCallback(async (bookId) => {
+    dispatch({ type: "SET_LOADING" });
+    try {
+      const updatedBook = await api.unassignBook(bookId);
+      dispatch({ type: "UPDATE_BOOK_SUCCESS", payload: updatedBook });
+    } catch (e) {
+      dispatch({ type: "SET_ERROR", payload: e.message });
+    }
+  }, []);
+
   // חברים
   const fetchMembers = useCallback(async () => {
     dispatch({ type: "SET_LOADING" });
@@ -172,6 +182,7 @@ export function LibraryProvider({ children }) {
         addBook,
         updateBook,
         deleteBook,
+        unassignBook,
         fetchMembers,
         addMember,
         updateMember,

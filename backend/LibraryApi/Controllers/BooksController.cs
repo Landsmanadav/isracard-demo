@@ -84,7 +84,7 @@ namespace LibraryApi.Controllers
         public IActionResult Update(int id, [FromBody] UpdateBookReq dto)
         {
             _logger.LogInformation("PUT request to update book with Id: {Id}", id);
-            var updated = _bookService.Update(id, dto);
+            var updated = _bookService.UpdateBook(id, dto);
             if (updated == null)
             {
                 _logger.LogWarning("Attempted to update non-existing book with Id: {Id}", id);
@@ -92,6 +92,15 @@ namespace LibraryApi.Controllers
             }
             _logger.LogInformation("Book updated with Id: {Id}", id);
             return Ok(updated);
+        }
+
+        [HttpPost("{id}/unassign")]
+        public IActionResult UnassignBook(int id)
+        {
+            var book = _bookService.UnassignBook(id);
+            if (book == null)
+                return NotFound();
+            return Ok(book); // מחזיר את הספר (אפשר גם BookWithAssignedMemberRes)
         }
     }
 }
