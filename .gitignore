@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -22,3 +23,24 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+=======
+# Visual Studio / .NET build
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ASP.NET Temp files
+*.publish.xml
+publish/
+
+# React / Node
+/frontend/library-ui/node_modules/
+/frontend/library-ui/build/
+
+# VS Code
+.vscode/
+>>>>>>> 5e3d858031e451c80b25edf9f4c997f480c42272

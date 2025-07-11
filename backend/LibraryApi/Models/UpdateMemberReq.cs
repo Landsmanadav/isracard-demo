@@ -1,0 +1,10 @@
+namespace LibraryApi.Models
+{
+    public class UpdateMemberReq
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public int? BookId { get; set; } // אופציונלי - ספר חדש לשיוך, או null להסרה
+    }
+}
