@@ -1,21 +1,17 @@
-import { useLibraryStore } from "../context/LibraryContext";
+import { useEffect } from "react";
 import LibraryTable from "../components/LibraryTable";
-import { useCallback, useEffect } from "react";
+import { useLibraryStore } from "../context/LibraryContext";
+import { Box } from "@mui/material";
+import "./MembersPage.scss";
+import RowActions from "../components/RowActions";
 
 export default function MembersPage() {
-  const { members, fetchMembers } = useLibraryStore();
+  const { members, loading, error, fetchMembers, deleteMember } =
+    useLibraryStore();
 
   useEffect(() => {
     fetchMembers();
-  }, []);
-
-  const handleEdit = useCallback((row) => {
-    console.log("Edit", row);
-  }, []);
-
-  const handleDelete = useCallback((row) => {
-    console.log("Delete", row);
-  }, []);
+  }, [fetchMembers]);
 
   const columns = [
     { field: "id", headerName: "ID" },
@@ -27,31 +23,48 @@ export default function MembersPage() {
       headerName: "Assigned Book",
       valueGetter: (row) => row.assignedBook?.title || "None",
     },
+    {
+      field: "createdAt",
+      headerName: "Created",
+      valueGetter: (row) =>
+        row.createdAt ? new Date(row.createdAt).toLocaleString("he-IL") : "",
+    },
+    {
+      field: "updatedAt",
+      headerName: "Updated",
+      valueGetter: (row) =>
+        row.updatedAt ? new Date(row.updatedAt).toLocaleString("he-IL") : "",
+    },
   ];
 
-  // התאמה אישית לכפתורים
-  const customButtons = (row) => (
-    <>
-      <div style={{ display: "flex", gap: "6px" }}>
-        <button className="btn" onClick={() => handleEdit(row)}>
-          Edit
-        </button>
-        <button className="btn delete-btn" onClick={() => handleDelete(row)}>
-          Delete
-        </button>
-      </div>
-    </>
-  );
+  const customButtons = (row) => {
+    return (
+      <RowActions
+        onEdit={() => console.log("Edit", row)}
+        onDelete={() => handleDeleteMember(row.id)}
+        onUnassign={() => console.log("Unassign", row)}
+        assigned={!!row.assignedBook}
+        loading={loading}
+      />
+    );
+  };
+  function handleDeleteMember(id) {
+    if (window.confirm("בטוח למחוק את החבר?")) {
+      deleteMember(id);
+    }
+  }
 
   return (
-    <div style={{ maxWidth: 1200, margin: "0 auto", padding: "32px 0" }}>
-      <h2>Members</h2>
-      <LibraryTable
-        rows={members}
-        columns={columns}
-        onEdit={handleEdit}
-        customButtons={customButtons}
-      />
-    </div>
+    <Box className="members-container">
+      <h2>Members Management</h2>
+      <div className="table-responsive">
+        <LibraryTable
+          rows={members}
+          columns={columns}
+          onEdit={(row) => console.log("Edit", row)}
+          customButtons={customButtons}
+        />
+      </div>
+    </Box>
   );
 }

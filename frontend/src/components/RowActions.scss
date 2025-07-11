@@ -1,0 +1,42 @@
+.actions-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.btn {
+  padding: 5px 18px;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  background: #1976d2;
+  color: #fff;
+  transition: background 0.2s;
+}
+.edit-btn {
+  background: #1976d2;
+}
+.delete-btn {
+  background: #d32f2f;
+}
+.unassign-btn {
+  background: #ffa000;
+  color: #222;
+}
+.btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.btn:hover {
+  filter: brightness(0.92);
+}
+
+@media (max-width: 700px) {
+  .actions-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
