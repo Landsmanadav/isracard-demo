@@ -1,0 +1,16 @@
+@use "./_variables" as *;
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap");
+
+body {
+  background: $background-color;
+  color: $text-color;
+  font-family: $font-main !important;
+  font-size: $font-size-base;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: $primary-color;
+}
