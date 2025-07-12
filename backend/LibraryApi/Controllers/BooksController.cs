@@ -49,6 +49,7 @@ namespace LibraryApi.Controllers
             var book = new Book
             {
                 Title = newBook.Title,
+                MemberId = newBook.MemberId
             };
             var created = _bookService.Add(book);
             _logger.LogInformation("New book created with Id: {Id}", created.Id);

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import LibraryTable from "../components/LibraryTable";
 import { useLibraryStore } from "../context/LibraryContext";
-import { Box } from "@mui/material";
-import "./BooksPage.scss"; // ודא שהקובץ קיים
+import { Box, Button } from "@mui/material";
+import "./BooksPage.scss";
 import RowActions from "../components/RowActions";
 import EditBookModal from "../components/EditBookModal";
+import AddItemModal from "../components/AddItemModal";
 export default function BooksPage() {
   const {
     members,
@@ -21,6 +22,9 @@ export default function BooksPage() {
 
   const [editingBook, setEditingBook] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [addBookOpen, setAddBookOpen] = useState(false);
+
+  const availableMembers = members.filter((m) => !m.assignedBook);
 
   useEffect(() => {
     fetchBooks();
@@ -82,9 +86,32 @@ export default function BooksPage() {
     setModalOpen(false);
     setEditingBook(null);
   }
+
+  async function handleOpen() {
+    await fetchMembers();
+    setAddBookOpen(true);
+  }
+  async function handleAddBook(data) {
+    console.log(data);
+    await addBook({
+      title: data.title,
+      memberId: data.memberId || null,
+    });
+    setAddBookOpen(false);
+    fetchBooks();
+    fetchMembers();
+  }
   return (
     <Box className="books-container">
       <h2>Books Management</h2>
+      <Button
+        className="btn"
+        variant="contained"
+        onClick={() => handleOpen()}
+        sx={{ mb: 2 }}
+      >
+        + Add Book
+      </Button>
       <div className="table-responsive">
         <LibraryTable
           rows={books}
@@ -100,6 +127,33 @@ export default function BooksPage() {
           members={members}
           onSave={handleSave}
           onClose={() => setModalOpen(false)}
+        />
+      )}
+      {addBookOpen && (
+        <AddItemModal
+          open={addBookOpen}
+          title="Add Book"
+          fields={[
+            {
+              name: "title",
+              label: "Book Title",
+              type: "text",
+              required: true,
+            },
+            { name: "memberId", label: "Assign Member", type: "select" },
+          ]}
+          selectOptions={{
+            memberId: [
+              { value: "", label: "-- No Member --" },
+              ...availableMembers.map((m) => ({
+                value: m.id,
+                label: `${m.firstName} ${m.lastName}`,
+              })),
+            ],
+          }}
+          onSave={handleAddBook}
+          onClose={() => setAddBookOpen(false)}
+          loading={loading}
         />
       )}
     </Box>

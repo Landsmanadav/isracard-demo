@@ -1,3 +1,4 @@
+@use "../styles/_variables" as *;
 .books-container {
   width: 90%;
   margin: 0 auto;
@@ -8,9 +9,14 @@
   .table-responsive {
     width: 100%;
     overflow-x: auto;
+    margin-bottom: 20px;
+    max-height: 75vh;
+    overflow: auto;
+  }
+  .btn {
+    background-color: $btn-bg;
   }
 }
-
 @media (max-width: 700px) {
   .books-container {
     padding: 0;
