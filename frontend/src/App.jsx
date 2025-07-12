@@ -11,14 +11,17 @@ import MembersPage from "./pages/MembersPage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { LibraryProvider } from "./context/LibraryContext";
-
+import Layout from "../src/hero/layout/Layout";
+import Intro from "../src/hero/components/Intro/Intro";
 export default function App() {
   return (
     <LibraryProvider>
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Intro />} />
+          </Route>
           <Route path="/books" element={<BooksPage />} />
           <Route path="/members" element={<MembersPage />} />
           <Route path="*" element={<NotFoundPage />} />
