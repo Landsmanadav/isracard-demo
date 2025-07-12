@@ -81,7 +81,6 @@ export default function BooksPage() {
   }
 
   async function handleSave(data) {
-    console.log(data);
     await updateBook(editingBook.id, data);
     setModalOpen(false);
     setEditingBook(null);
@@ -92,7 +91,6 @@ export default function BooksPage() {
     setAddBookOpen(true);
   }
   async function handleAddBook(data) {
-    console.log(data);
     await addBook({
       title: data.title,
       memberId: data.memberId || null,
@@ -116,7 +114,6 @@ export default function BooksPage() {
         <LibraryTable
           rows={books}
           columns={columns}
-          onEdit={(row) => console.log("Edit", row)}
           customButtons={customButtons}
         />
       </div>
