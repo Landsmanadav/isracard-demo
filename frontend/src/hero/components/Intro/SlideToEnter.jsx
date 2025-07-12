@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import "./SlideToEnter.scss";
-import { getBouncyText } from "../../utils/helper";
+import { getBouncyText } from "../../utils/Helper";
 
 function SlideToEnter({ onUnlock, delay = 500 }) {
   const sliderRef = useRef(null);
