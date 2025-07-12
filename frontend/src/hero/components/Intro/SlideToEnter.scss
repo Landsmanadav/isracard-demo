@@ -1,7 +1,7 @@
 @use "../../styles/_variables.scss" as *;
 .slider-wrapper {
   @include max($breakpoint-sm) {
-    bottom: 15% !important;
+    bottom: 20% !important;
     transform-origin: 50% 50%;
   }
   .slider-container {
