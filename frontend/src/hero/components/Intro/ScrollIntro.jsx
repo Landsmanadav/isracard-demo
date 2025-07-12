@@ -90,7 +90,7 @@ export default function ScrollIntro({
   // Prevent double-scroll while animating
   const [isAnimating, setIsAnimating] = useState(false);
   const handleWheel = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (isAnimating) return;
 
     const dir = e.deltaY > 0 ? 1 : -1;
