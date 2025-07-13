@@ -48,7 +48,7 @@ export default function ScrollIntro({
 
   // Central scroll handler
   function handleWheel(e) {
-    e.preventDefault?.();
+    // e.preventDefault?.();
     if (isAnimating) return;
 
     const dir = e.deltaY > 0 ? 1 : -1;
