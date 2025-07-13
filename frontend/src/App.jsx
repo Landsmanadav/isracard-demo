@@ -19,7 +19,7 @@ export default function App() {
     <LibraryProvider>
       <Router>
         <Header />
-        <Toolbar />
+        {/* <Toolbar /> */}
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Intro />} />

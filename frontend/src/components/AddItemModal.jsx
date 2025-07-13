@@ -19,7 +19,7 @@ export default function AddItemModal({
   loading = false,
 }) {
   const [form, setForm] = useState(() =>
-    fields.reduce((acc, f) => ({ ...acc, [f.name]: "" }, {}))
+    fields.reduce((acc, f) => ({ ...acc, [f.name]: "" }), {})
   );
 
   const handleChange = (name, value) => {
@@ -30,7 +30,14 @@ export default function AddItemModal({
     onSave(form);
   };
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      maxWidth="xs"
+      fullWidth
+      disableScrollLock
+      disableRestoreFocus
+    >
       <DialogTitle>{title}</DialogTitle>
       <form onSubmit={handleSubmit}>
         <DialogContent
