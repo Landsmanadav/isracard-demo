@@ -37,6 +37,8 @@ export default function AddItemModal({
       fullWidth
       disableScrollLock
       disableRestoreFocus
+      disableAutoFocus
+      disableEnforceFocus
     >
       <DialogTitle>{title}</DialogTitle>
       <form onSubmit={handleSubmit}>
