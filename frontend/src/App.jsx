@@ -13,11 +13,13 @@ import NotFoundPage from "./pages/NotFoundPage";
 import { LibraryProvider } from "./context/LibraryContext";
 import Layout from "../src/hero/layout/Layout";
 import Intro from "../src/hero/components/Intro/Intro";
+import { Toolbar } from "@mui/material";
 export default function App() {
   return (
     <LibraryProvider>
       <Router>
         <Header />
+        <Toolbar />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Intro />} />
