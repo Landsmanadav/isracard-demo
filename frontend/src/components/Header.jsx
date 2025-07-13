@@ -11,7 +11,7 @@ export default function Header() {
       <AppBar
         position="fixed"
         sx={{
-          backgroundColor: "#222222", // צבע רקע שלך
+          backgroundColor: "#222222",
           color: "#ffffff",
         }}
       >
