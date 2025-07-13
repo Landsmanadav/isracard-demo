@@ -25,7 +25,6 @@ export default function MembersPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [addMemberOpen, setAddMemberOpen] = useState(false);
 
-  // חישוב ספרים פנויים לשיוך
   const availableBooks = books.filter((b) => !b.assignedMember);
 
   useEffect(() => {
@@ -60,7 +59,6 @@ export default function MembersPage() {
     }
   }
 
-  // --- Add Member Modal --- //
   async function handleOpenAddMember() {
     await fetchBooks();
     setAddMemberOpen(true);

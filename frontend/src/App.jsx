@@ -8,7 +8,6 @@ import {
 import Header from "./components/Header";
 import BooksPage from "./pages/BooksPage";
 import MembersPage from "./pages/MembersPage";
-import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { LibraryProvider } from "./context/LibraryContext";
 import Layout from "../src/hero/layout/Layout";
