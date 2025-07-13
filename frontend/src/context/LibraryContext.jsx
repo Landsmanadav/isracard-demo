@@ -1,4 +1,9 @@
-import { createContext, useContext, useReducer, useCallback } from "react";
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useCallback,
+} from "react";
 import * as api from "../services/libraryService";
 
 const LibraryContext = createContext();
@@ -95,6 +100,7 @@ export function LibraryProvider({ children }) {
     try {
       const book = await api.addBook(data);
       dispatch({ type: "ADD_BOOK_SUCCESS", payload: book });
+      window.scrollTo(0, 0);
     } catch (e) {
       dispatch({ type: "SET_ERROR", payload: e.message });
     }
@@ -105,6 +111,7 @@ export function LibraryProvider({ children }) {
     try {
       const updated = await api.updateBook(id, data);
       dispatch({ type: "UPDATE_BOOK_SUCCESS", payload: updated });
+      window.scrollTo(0, 0);
     } catch (e) {
       dispatch({ type: "SET_ERROR", payload: e.message });
     }
@@ -146,6 +153,7 @@ export function LibraryProvider({ children }) {
     try {
       const member = await api.addMember(data);
       dispatch({ type: "ADD_MEMBER_SUCCESS", payload: member });
+      window.scrollTo(0, 0);
     } catch (e) {
       dispatch({ type: "SET_ERROR", payload: e.message });
     }
@@ -156,6 +164,7 @@ export function LibraryProvider({ children }) {
     try {
       const updated = await api.updateMember(id, data);
       dispatch({ type: "UPDATE_MEMBER_SUCCESS", payload: updated });
+      window.scrollTo(0, 0);
     } catch (e) {
       dispatch({ type: "SET_ERROR", payload: e.message });
     }

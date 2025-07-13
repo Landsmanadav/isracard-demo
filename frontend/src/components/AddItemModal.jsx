@@ -30,16 +30,7 @@ export default function AddItemModal({
     onSave(form);
   };
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      maxWidth="xs"
-      fullWidth
-      disableScrollLock
-      disableRestoreFocus
-      disableAutoFocus
-      disableEnforceFocus
-    >
+    <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
       <DialogTitle>{title}</DialogTitle>
       <form onSubmit={handleSubmit}>
         <DialogContent
