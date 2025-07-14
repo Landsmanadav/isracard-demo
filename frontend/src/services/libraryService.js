@@ -2,7 +2,6 @@ const API = import.meta.env.VITE_API_URL || "/api";
 
 // ספרים
 export async function fetchBooks() {
-  console.log(import.meta.env);
   const res = await fetch(`${API}/books`);
   if (!res.ok) throw new Error("Failed to fetch books");
   return await res.json();

@@ -28,7 +28,7 @@ export default function BooksPage() {
 
   useEffect(() => {
     fetchBooks();
-  }, [fetchBooks]);
+  }, []);
 
   const columns = [
     { field: "id", headerName: "ID" },

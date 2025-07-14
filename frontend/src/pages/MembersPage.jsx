@@ -30,7 +30,7 @@ export default function MembersPage() {
   useEffect(() => {
     fetchMembers();
     fetchBooks();
-  }, [fetchMembers, fetchBooks]);
+  }, []);
 
   async function handleEditMember(row) {
     await fetchBooks();

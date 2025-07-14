@@ -1,8 +1,9 @@
 import React, {
   createContext,
   useContext,
+  useEffect,
   useReducer,
-  useCallback,
+  useRef,
 } from "react";
 import * as api from "../services/libraryService";
 
@@ -85,7 +86,7 @@ export function LibraryProvider({ children }) {
   const [state, dispatch] = useReducer(libraryReducer, initialState);
 
   // ספרים
-  const fetchBooks = useCallback(async () => {
+  async function fetchBooks() {
     dispatch({ type: "SET_LOADING" });
     try {
       const data = await api.fetchBooks();
@@ -93,9 +94,9 @@ export function LibraryProvider({ children }) {
     } catch (e) {
       dispatch({ type: "SET_ERROR", payload: e.message });
     }
-  }, []);
+  }
 
-  const addBook = useCallback(async (data) => {
+  async function addBook(data) {
     dispatch({ type: "SET_LOADING" });
     try {
       const book = await api.addBook(data);
@@ -104,9 +105,9 @@ export function LibraryProvider({ children }) {
     } catch (e) {
       dispatch({ type: "SET_ERROR", payload: e.message });
     }
-  }, []);
+  }
 
-  const updateBook = useCallback(async (id, data) => {
+  async function updateBook(id, data) {
     dispatch({ type: "SET_LOADING" });
     try {
       const updated = await api.updateBook(id, data);
@@ -115,9 +116,9 @@ export function LibraryProvider({ children }) {
     } catch (e) {
       dispatch({ type: "SET_ERROR", payload: e.message });
     }
-  }, []);
+  }
 
-  const deleteBook = useCallback(async (id) => {
+  async function deleteBook(id) {
     dispatch({ type: "SET_LOADING" });
     try {
       await api.deleteBook(id);
@@ -125,9 +126,9 @@ export function LibraryProvider({ children }) {
     } catch (e) {
       dispatch({ type: "SET_ERROR", payload: e.message });
     }
-  }, []);
+  }
 
-  const unassignBook = useCallback(async (bookId) => {
+  async function unassignBook(bookId) {
     dispatch({ type: "SET_LOADING" });
     try {
       const updatedBook = await api.unassignBook(bookId);
@@ -135,10 +136,10 @@ export function LibraryProvider({ children }) {
     } catch (e) {
       dispatch({ type: "SET_ERROR", payload: e.message });
     }
-  }, []);
+  }
 
   // חברים
-  const fetchMembers = useCallback(async () => {
+  async function fetchMembers() {
     dispatch({ type: "SET_LOADING" });
     try {
       const data = await api.fetchMembers();
@@ -146,9 +147,9 @@ export function LibraryProvider({ children }) {
     } catch (e) {
       dispatch({ type: "SET_ERROR", payload: e.message });
     }
-  }, []);
+  }
 
-  const addMember = useCallback(async (data) => {
+  async function addMember(data) {
     dispatch({ type: "SET_LOADING" });
     try {
       const member = await api.addMember(data);
@@ -157,9 +158,9 @@ export function LibraryProvider({ children }) {
     } catch (e) {
       dispatch({ type: "SET_ERROR", payload: e.message });
     }
-  }, []);
+  }
 
-  const updateMember = useCallback(async (id, data) => {
+  async function updateMember(id, data) {
     dispatch({ type: "SET_LOADING" });
     try {
       const updated = await api.updateMember(id, data);
@@ -168,9 +169,9 @@ export function LibraryProvider({ children }) {
     } catch (e) {
       dispatch({ type: "SET_ERROR", payload: e.message });
     }
-  }, []);
+  }
 
-  const deleteMember = useCallback(async (id) => {
+  async function deleteMember(id) {
     dispatch({ type: "SET_LOADING" });
     try {
       await api.deleteMember(id);
@@ -178,7 +179,7 @@ export function LibraryProvider({ children }) {
     } catch (e) {
       dispatch({ type: "SET_ERROR", payload: e.message });
     }
-  }, []);
+  }
 
   return (
     <LibraryContext.Provider
