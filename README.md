@@ -1,4 +1,4 @@
-# eegon-demo – Full-Stack Library Management Demo
+# EGGON-demo – Full-Stack Library Management Demo
 
 A full-stack demo application for a library management system, consisting of a **.NET 6** Web API backend and a **React** frontend (built with Vite). The project supports managing books and members with assignment logic, and includes a simple web UI for interacting with the API.
 
