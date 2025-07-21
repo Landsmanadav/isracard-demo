@@ -56,6 +56,7 @@ function libraryReducer(state, action) {
         error: null,
       };
     case "UPDATE_MEMBER_SUCCESS":
+      console.log(action.payload);
       return {
         ...state,
         members: state.members.map((m) =>
@@ -95,6 +96,20 @@ export function LibraryProvider({ children }) {
       dispatch({ type: "SET_ERROR", payload: e.message });
     }
   }
+  // const prevRef = useRef();
+
+  // useEffect(() => {
+  //   if (prevRef.current) {
+  //     if (prevRef.current === fetchBooks) {
+  //       console.log("SAME reference as before!");
+  //     } else {
+  //       console.log("NEW reference!", fetchBooks);
+  //     }
+  //   } else {
+  //     console.log("First mount", fetchBooks);
+  //   }
+  //   prevRef.current = fetchBooks;
+  // });
 
   async function addBook(data) {
     dispatch({ type: "SET_LOADING" });

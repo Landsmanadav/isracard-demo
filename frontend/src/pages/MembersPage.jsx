@@ -29,7 +29,7 @@ export default function MembersPage() {
 
   useEffect(() => {
     fetchMembers();
-    fetchBooks();
+    // fetchBooks();
   }, []);
 
   async function handleEditMember(row) {
@@ -55,7 +55,7 @@ export default function MembersPage() {
     if (window.confirm("האם אתה בטוח שברצונך לבטל את השיוך של הספר?")) {
       await unassignBook(bookId);
       fetchMembers();
-      fetchBooks();
+      // fetchBooks();
     }
   }
 
@@ -102,7 +102,7 @@ export default function MembersPage() {
 
   const customButtons = (row) => (
     <RowActions
-      onEdit={() => handleEditMember(row)}
+      // onEdit={() => handleEditMember(row)}
       onDelete={() => handleDeleteMember(row.id)}
       onUnassign={() => handleUnassignBook(row.assignedBook?.id)}
       assigned={!!row.assignedBook}
