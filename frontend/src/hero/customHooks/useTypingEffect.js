@@ -10,7 +10,6 @@ export function useTypingEffect(
   const [charIndex, setCharIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
   const intervalRef = useRef(null);
-
   // לשמור את המערך של שורות מההרצה הקודמת
   const prevLines = useRef(lines);
 

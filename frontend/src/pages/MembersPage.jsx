@@ -102,7 +102,7 @@ export default function MembersPage() {
 
   const customButtons = (row) => (
     <RowActions
-      // onEdit={() => handleEditMember(row)}
+      onEdit={() => handleEditMember(row)}
       onDelete={() => handleDeleteMember(row.id)}
       onUnassign={() => handleUnassignBook(row.assignedBook?.id)}
       assigned={!!row.assignedBook}

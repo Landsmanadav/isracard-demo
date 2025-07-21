@@ -54,7 +54,7 @@ export default function BooksPage() {
 
   const customButtons = (row) => (
     <RowActions
-      // onEdit={() => handleEdit(row)}
+      onEdit={() => handleEdit(row)}
       onDelete={() => handleDeleteBook(row.id)}
       onUnassign={() => handleUnassignBook(row.id)}
       assigned={!!row.assignedMember}

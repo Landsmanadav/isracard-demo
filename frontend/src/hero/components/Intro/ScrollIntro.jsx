@@ -29,7 +29,7 @@ export default function ScrollIntro({
     () => [sections[currentSection]],
     [currentSection, sections]
   );
-  const { typedLines } = useTypingEffect(activeLines, 50, 500);
+  const { typedLines, isTyping } = useTypingEffect(activeLines, 40, 500);
 
   // Touch handling
   const touchStartY = useRef(0);
