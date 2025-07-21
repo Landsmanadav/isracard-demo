@@ -1,30 +1,48 @@
 // Intro.jsx
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SlideToEnter from "./SlideToEnter";
 import ScrollIntro from "./ScrollIntro";
 import "./Intro.scss";
+import { useLibraryStore } from "../../../context/LibraryContext";
+
+export const SECTIONS = {
+  en: [
+    `Hello and welcome to Nadav Landesman’s portfolio!\n` +
+      `I’m a Full‑Stack Developer passionate about building end‑to‑end solutions.\n` +
+      `On this site you’ll find a simple CRUD application.`,
+    `If you’d like to skip this introduction, feel free to use the main menu at the top.\n` +
+      `Otherwise, sit back and enjoy the interactive presentation.`,
+    `Here you can experience a dynamic background that responds to your cursor movements.\n` +
+      `You can toggle the animations or disable the background entirely\n` +
+      `using the dedicated buttons in the menu.`,
+    `Did you notice that the cursor and animations change colors in sync?\n\n` +
+      `Did you notice that with every mouse movement the background changes speed?`,
+    `NOW YOU ARE READY TO DIVE IN!\n\n` +
+      `Slide to enter and explore the application.\n\n` +
+      `Enjoy!`,
+  ],
+  it: [
+    `Ciao e benvenuto nel portfolio di Nadav Landesman!\n` +
+      `Sono uno sviluppatore Full‑Stack appassionato di creare soluzioni end‑to‑end.\n` +
+      `In questo sito troverai una semplice applicazione CRUD.`,
+    `Se desideri saltare questa introduzione, sentiti libero di usare il menu principale in alto.\n` +
+      `Altrimenti, rilassati e goditi la presentazione interattiva.`,
+    `Qui puoi sperimentare uno sfondo dinamico che risponde ai movimenti del cursore.\n` +
+      `Puoi attivare o disattivare le animazioni o disabilitare completamente lo sfondo\n` +
+      `utilizzando gli appositi pulsanti nel menu.`,
+    `Hai notato che il cursore e le animazioni cambiano colore in sincrono?\n\n` +
+      `Hai notato che a ogni movimento del mouse lo sfondo ne modifica la velocità?`,
+    `ADESSO SEI PRONTO PER COMINCIARE!\n\n` +
+      `Scorri per entrare ed esplorare l'applicazione.\n\n` +
+      `Buon divertimento!`,
+  ],
+};
 
 export default function Intro() {
   const navigate = useNavigate();
-  // מגדירים כאן את ה־sections בשביל שנוכל לחשב lastIndex דינמי
-  const sections = [
-    // Step 1: Introduction & skip option
-    `Hi, I’m Nadav Landesman\n` +
-      `This is my take-home assignment for a development role at Isracard.\n` +
-      `If you’d like to skip the Hero section, use the top menu to go straight to Books or Members.`,
-
-    // Step 2: Who I am & my focus
-    `I’m a Full-Stack Developer passionate about crafting dynamic user interfaces with React,\n` +
-      `and building powerful automation behind the scenes.\n` +
-      `I emphasize performance, maintainability, and a seamless user experience.`,
-
-    // Step 3: Hero features & Slide to Enter
-    `Welcome to the Hero section! Here you’ll enjoy an interactive background that responds to cursor movement.\n` +
-      `When you’re ready to dive in\n` +
-      `Slide to enter and explore the system.`,
-  ];
-
+  const { lang } = useLibraryStore();
+  const sections = useMemo(() => (lang ? SECTIONS.en : SECTIONS.it), [lang]);
   const lastIndex = sections.length - 1;
 
   const [currentSection, setCurrentSection] = useState(0);

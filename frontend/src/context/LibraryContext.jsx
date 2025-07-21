@@ -14,10 +14,19 @@ const initialState = {
   members: [],
   loading: false,
   error: null,
+  cursor: true,
+  animation: true,
+  lang: false,
 };
 
 function libraryReducer(state, action) {
   switch (action.type) {
+    case "TOGGLE_CURSOR":
+      return { ...state, cursor: !state.cursor };
+    case "TOGGLE_ANIMATION":
+      return { ...state, animation: !state.animation };
+    case "TOGGLE_LANG":
+      return { ...state, lang: !state.lang };
     // ספרים
     case "FETCH_BOOKS_SUCCESS":
       return { ...state, books: action.payload, loading: false, error: null };
@@ -86,6 +95,15 @@ function libraryReducer(state, action) {
 export function LibraryProvider({ children }) {
   const [state, dispatch] = useReducer(libraryReducer, initialState);
 
+  function toggleCursor() {
+    dispatch({ type: "TOGGLE_CURSOR" });
+  }
+  function toggleAnimation() {
+    dispatch({ type: "TOGGLE_ANIMATION" });
+  }
+  function toggleLang() {
+    dispatch({ type: "TOGGLE_LANG" });
+  }
   // ספרים
   async function fetchBooks() {
     dispatch({ type: "SET_LOADING" });
@@ -203,6 +221,9 @@ export function LibraryProvider({ children }) {
         members: state.members,
         loading: state.loading,
         error: state.error,
+        cursor: state.cursor,
+        animation: state.animation,
+        lang: state.lang,
         fetchBooks,
         addBook,
         updateBook,
@@ -212,6 +233,9 @@ export function LibraryProvider({ children }) {
         addMember,
         updateMember,
         deleteMember,
+        toggleCursor,
+        toggleAnimation,
+        toggleLang,
       }}
     >
       {children}

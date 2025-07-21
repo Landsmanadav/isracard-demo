@@ -21,17 +21,18 @@ namespace LibraryApi.Data
         };
 
         public List<Member> Members { get; } = new List<Member>
-        {
-            new Member { Id = 1,  FirstName = "Michael",   LastName = "Cohen",    Email = "michael.cohen@example.com",    CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
-            new Member { Id = 2,  FirstName = "Nimrod",    LastName = "Levi",     Email = "nimrod.levi@example.com",      CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
-            new Member { Id = 3,  FirstName = "Ofra",      LastName = "Israeli",  Email = "ofra.israeli@example.com",     CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
-            new Member { Id = 4,  FirstName = "Solomon",   LastName = "Hazan",    Email = "solomon.hazan@example.com",    CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
-            new Member { Id = 5,  FirstName = "Tamar",     LastName = "Lishansky",Email = "tamar.lishansky@example.com",  CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
-            new Member { Id = 6,  FirstName = "Raviv",     LastName = "Regev",    Email = "raviv.regev@example.com",      CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
-            new Member { Id = 7,  FirstName = "Hila",      LastName = "Yakobi",   Email = "hila.yakobi@example.com",      CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
-            new Member { Id = 8,  FirstName = "Maya",      LastName = "Barak",    Email = "maya.barak@example.com",       CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
-            new Member { Id = 9,  FirstName = "Leon",      LastName = "Levi",     Email = "leon.levi@example.com",        CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
-            new Member { Id = 10, FirstName = "Noa",       LastName = "Schwartz", Email = "noa.schwartz@example.com",     CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow }
-        };
+            {
+               new Member { Id = 1,  FirstName = "Marco",       LastName = "Rossi",      Email = "marco.rossi@example.com",       CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+               new Member { Id = 2,  FirstName = "Luca",        LastName = "Bianchi",    Email = "luca.bianchi@example.com",      CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+               new Member { Id = 3,  FirstName = "Francesco",   LastName = "Costa",      Email = "francesco.costa@example.com",   CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+               new Member { Id = 4,  FirstName = "Alessandro",  LastName = "Greco",      Email = "alessandro.greco@example.com",  CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+               new Member { Id = 5,  FirstName = "Sofia",       LastName = "Romano",     Email = "sofia.romano@example.com",      CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+               new Member { Id = 6,  FirstName = "Giulia",      LastName = "Conti",      Email = "giulia.conti@example.com",      CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+               new Member { Id = 7,  FirstName = "Matteo",      LastName = "Ferrari",    Email = "matteo.ferrari@example.com",    CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+               new Member { Id = 8,  FirstName = "Elena",       LastName = "Ricci",      Email = "elena.ricci@example.com",       CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+               new Member { Id = 9,  FirstName = "Andrea",      LastName = "Moretti",    Email = "andrea.moretti@example.com",    CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow },
+               new Member { Id = 10, FirstName = "Martina",     LastName = "Galli",      Email = "martina.galli@example.com",     CreatedAt = DateTime.UtcNow, UpdatedAt = DateTime.UtcNow }
+            };
+
     }
 }
